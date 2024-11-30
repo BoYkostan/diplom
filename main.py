@@ -13,22 +13,28 @@ pd.options.display.max_rows = 300
 
 # loaded_data = pd.read_csv('dataset.csv', sep='\t')
 # loaded_data = pd.read_excel('Baza_glaukoma_issled_31_08_2023.xlsx', index_col=0)
-loaded_data1 = pd.read_excel('dataset_noname.xlsx')
+loaded_data1 = pd.read_excel('new_database_impersonal.xlsx')
 
-loaded_data1.to_excel('new_database_test.xlsx', index=False)
+# loaded_data1.to_excel('new_database_test.xlsx', index=False)
+
+# loaded_data2 = loaded_data1.sample(frac=1)
+# loaded_data2.to_excel('new_database_test1.xlsx', index=False)
+#
+# loaded_data3 = loaded_data2.sample(frac=1)
+# loaded_data3.to_excel('new_database_test1.xlsx', index=False)
+#
+# loaded_data4 = loaded_data3.sample(frac=1)
+# loaded_data4.to_excel('new_database_test1.xlsx', index=False)
 
 # Вариант загруженного датасета
 loaded_data = loaded_data1
 
-print(type(loaded_data))
 
 # Добавление колонки с возрастом
 # loaded_data['age'] = (loaded_data['date_of_examination'] - loaded_data['Date_of_Birth']) / np.timedelta64 ( 1 , 'y')
 # print(loaded_data)
-
 loaded_data = loaded_data.assign(temp_age = (loaded_data['date_of_examination'] - loaded_data['Date_of_Birth']) // np.timedelta64 ( 365 , 'D'))
 
-# print(loaded_data)
 
 # Удаление колонок
 # loaded_data = loaded_data.loc[:, ~loaded_data.columns.str.contains("full_name")]
@@ -39,8 +45,8 @@ print("\nКоличество пропусков в процентом соот�
 for col in loaded_data.columns:
     print(f'{col}: {loaded_data[col].isna().sum() / loaded_data.shape[0] * 100:.2f}%')
 
-import seaborn as sns
-import matplotlib.pyplot as plt
+# import seaborn as sns
+# import matplotlib.pyplot as plt
 
 # Отрисовка тепловой диаграммы
 # plt.figure(figsize=(20,12))
